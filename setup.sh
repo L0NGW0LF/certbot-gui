@@ -23,15 +23,18 @@ install_apache=$(ask_user "Vuoi installare Apache? (s/n): ")
 
 # Se l'utente desidera installare Apache
 if [[ "$install_apache" == "s" ]]; then
-    # Cambia il proprietario delle directory di configurazione di Apache
-    sudo chown -R www-data:www-data /etc/apache2/sites-available/
-    sudo chmod -R 755 /etc/apache2/sites-available/
+    
 
     # Installa Apache e PHP
     sudo apt update
     sudo apt install -y apache2
     sudo apt install -y php libapache2-mod-php
     sudo apt install -y php-mysql php-xml php-mbstring php-cli php-cgi php-fpm
+
+
+    # Cambia il proprietario delle directory di configurazione di Apache
+    sudo chown -R www-data:www-data /etc/apache2/sites-available/
+    sudo chmod -R 755 /etc/apache2/sites-available/
 fi
 
 # Chiedi all'utente se desidera installare Nginx
@@ -39,14 +42,17 @@ install_nginx=$(ask_user "Vuoi installare Nginx? (s/n): ")
 
 # Se l'utente desidera installare Nginx
 if [[ "$install_nginx" == "s" ]]; then
-    # Cambia il proprietario delle directory di configurazione di Nginx
-    sudo chown -R www-data:www-data /etc/nginx/sites-available/
-    sudo chmod -R 755 /etc/nginx/sites-available/
+    
 
     # Installa Nginx e PHP-FPM
     sudo apt update
     sudo apt install -y nginx
     sudo apt install -y php-fpm
+
+
+    # Cambia il proprietario delle directory di configurazione di Nginx
+    sudo chown -R www-data:www-data /etc/nginx/sites-available/
+    sudo chmod -R 755 /etc/nginx/sites-available/
 fi
 
 # Aggiungi regola a sudoers per www-data

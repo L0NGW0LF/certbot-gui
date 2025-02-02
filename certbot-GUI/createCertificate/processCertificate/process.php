@@ -9,9 +9,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $domain = $_POST['domain'];
     $email = $_POST['email'];
     $webroot = $_POST['webroot'];
-    $server = $_POST['server']; // Menu a tendina per scegliere il tipo di sistema
-    $renew = isset($_POST['renew']); // Verifica se il checkbox è selezionato
-    $test = isset($_POST['test']); // Verifica se il checkbox è selezionato
+    $server = $_POST['server']; 
+    $renew = isset($_POST['renew']); 
+    $test = isset($_POST['test']); 
 
     // Verifica che tutti i campi obbligatori siano stati compilati
     if (empty($domain) || empty($email)) {
@@ -20,17 +20,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         // Costruisci il comando Certbot
         if (empty($server)) {
+            if ($test) {
+                $command = "sudo certbot certonly --dry-run -d $domain --webroot -w $webroot";
+            } else {
             // Se il server non è specificato, usa il comando con webroot
             $command = "sudo certbot certonly --non-interactive --agree-tos --email $email -d $domain --webroot -w $webroot";
+            }
         } else {
+            if ($test) {
+                $command = "sudo certbot certonly --dry-run -d $domain --$server";
+            } else {
             // Seleziona il comando appropriato in base al server scelto
             $command = "sudo certbot --$server --non-interactive --agree-tos --email $email -d $domain";
+            }
         }
 
         // Aggiungi l'opzione --dry-run se il checkbox test è selezionato
-        if ($test) {
-            $command .= " --dry-run";
-        }
+        
 
         // Esegue il comando e cattura l'output
         $command .= " 2>&1"; // Aggiungi questa parte alla fine del comando

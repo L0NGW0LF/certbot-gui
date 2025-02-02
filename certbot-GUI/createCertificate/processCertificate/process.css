@@ -122,24 +122,23 @@ button:active {
 }
 
 .back {
-    align-self: flex-start; /* Lo sposta a sinistra */
-    margin-bottom: 20px; /* Distanza dagli altri elementi */
+    align-self: flex-start; 
+    margin-bottom: 20px; 
     position: relative;
-    background: linear-gradient(135deg, #ed1c24, #b31217); /* Gradiente rosso */
-    color: white; /* Testo bianco */
-    padding: 10px; /* Spaziatura interna */
-    border: none; /* Nessun bordo */
-    border-radius: 10px; /* Bordi arrotondati */
-    font-size: 5rem; /* Dimensione del testo */
-    cursor: pointer; /* Cambia il cursore in una mano */
-    transition: background 0.3s ease, transform 0.2s ease; /* Transizione fluida */
-    margin-top: 20px; /* Spazio sopra il pulsante */
+    background: linear-gradient(135deg, #ed1c24, #b31217); 
+    color: white;
+    padding: 10px; 
+    border: none; 
+    border-radius: 10px; 
+    font-size: 5rem; 
+    cursor: pointer; 
+    transition: background 0.3s ease, transform 0.2s ease;
+    margin-top: 20px; 
 }
 
 .back:hover {
-    background: linear-gradient(135deg, #b31217, #ed1c24); /* Gradiente invertito */
-    transform: scale(1.05); /* Effetto di ingrandimento */
-}
+    background: linear-gradient(135deg, #b31217, #ed1c24); 
+    transform: scale(1.05); 
 
 /* Animazione di caricamento */
 @keyframes fadeIn {
@@ -151,4 +150,5 @@ button:active {
         opacity: 1;
         transform: translateY(0);
     }
+}
 }
