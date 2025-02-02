@@ -44,6 +44,7 @@
             <!-- Sezione ServerWeb (nascosta di default) -->
             <div id="server" class="hidden">
                 <label for="server-select">Seleziona il server web:</label><br>
+                <label for="server-hint">(NB: Bisogna inserire il serverName nella configurazione Site di interesse)</label><br>
                 <select id="server-select" name="server">
                     <option value="apache">Apache</option>
                     <option value="nginx">Nginx</option>
@@ -58,6 +59,14 @@
                 <input type="checkbox" id="renewCheckbox" name="renew">
                 <label for="renewCheckbox"></label>
                 <span>Rinnovo automatico certificato</span>
+            </div>
+
+
+            <!-- Checkbox del Test certificato -->
+            <div class="test">
+                <input type="checkbox" id="testCheckbox" name="test">
+                <label for="testCheckbox"></label>
+                <span>Test richiesta certificato</span>
             </div>
           
 
