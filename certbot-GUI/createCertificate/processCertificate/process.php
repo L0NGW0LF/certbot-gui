@@ -21,14 +21,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Costruisci il comando Certbot
         if (empty($server)) {
             if ($test) {
-                $command = "sudo certbot certonly --dry-run -d $domain --webroot -w $webroot";
+                $command = "sudo certbot certonly --dry-run -d $domain --webroot -w $webroot --non-interactive";
             } else {
             // Se il server non è specificato, usa il comando con webroot
             $command = "sudo certbot certonly --non-interactive --agree-tos --email $email -d $domain --webroot -w $webroot";
             }
         } else {
             if ($test) {
-                $command = "sudo certbot certonly --dry-run -d $domain --$server";
+                $command = "sudo certbot certonly --dry-run -d $domain --$server --non-interactive";
             } else {
             // Seleziona il comando appropriato in base al server scelto
             $command = "sudo certbot --$server --non-interactive --agree-tos --email $email -d $domain";
