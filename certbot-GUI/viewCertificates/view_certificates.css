@@ -1,0 +1,136 @@
+/* Reset base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Stile generale del body */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, rgba(17, 17, 17, 0.9), rgba(34, 34, 34, 0.9));
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    padding: 250px;
+}
+
+/* Stile del contenitore principale */
+.container {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    width: 100%;
+    padding: 40px;
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+    overflow: hidden;
+}
+
+/* Stile del pulsante "back" */
+.back {
+    align-self: flex-start; /* Lo sposta a sinistra */
+    margin-bottom: 20px; /* Distanza dagli altri elementi */
+    position: relative;
+    left: -650px; /* Sposta l'elemento 20px più a sinistra */
+    top: -30px;
+    background: linear-gradient(135deg, #ed1c24, #b31217); /* Gradiente rosso */
+    color: white; /* Testo bianco */
+    padding: 10px; /* Spaziatura interna */
+    border: none; /* Nessun bordo */
+    border-radius: 10px; /* Bordi arrotondati */
+    font-size: 5rem; /* Dimensione del testo */
+    cursor: pointer; /* Cambia il cursore in una mano */
+    transition: background 0.3s ease, transform 0.2s ease; /* Transizione fluida */
+    margin-top: 20px; /* Spazio sopra il pulsante */
+}
+
+.back:hover {
+    background: linear-gradient(135deg, #b31217, #ed1c24); /* Gradiente invertito */
+    transform: scale(1.05); /* Effetto di ingrandimento */
+}
+
+/* Contenitore della tabella con scrollbar orizzontale */
+.table-wrapper {
+    overflow-x: auto; /* Abilita la scrollbar orizzontale */
+    max-width: 100%; /* Assicurati che il contenitore non ecceda il bordo del container */
+}
+
+/* Personalizzazione della scrollbar */
+.table-wrapper::-webkit-scrollbar {
+    height: 8px; /* Altezza della scrollbar orizzontale */
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.05); /* Colore del thumb (parte mobile) */
+    border-radius: 10px; /* Arrotondamento degli angoli del thumb */
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+    background: transparent; /* Colore del track (parte fissa) */
+}
+
+/* Stile del titolo */
+h1 {
+    font-size: 2.5rem;
+    color: #ed1c24; /* Nuovo colore rosso */
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 10px rgba(237, 28, 36, 0.5); /* Ombra del testo adattata al nuovo colore */
+}
+
+/* Stile della tabella */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    overflow-x: auto; /* Abilita la scrollbar orizzontale */
+    max-width: 600px;
+}
+
+/* Stile delle celle della tabella */
+th, td {
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: left;
+    color: #ddd;
+}
+
+/* Stile dell'intestazione della tabella */
+th {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Stile delle righe pari */
+tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Stile dei link */
+a {
+    color: #ed1c24; /* Nuovo colore rosso */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #b31217; /* Tonalità più scura di rosso */
+}
+
+/* Animazione di caricamento */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

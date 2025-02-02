@@ -1,0 +1,154 @@
+/* Reset base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Stile generale del body */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, rgba(17, 17, 17, 0.9), rgba(34, 34, 34, 0.9));
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    padding: 20px;
+}
+
+/* Stile del contenitore principale */
+.container {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    width: 100%;
+    max-width: 600px;
+    padding: 40px;
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Stile del titolo */
+h1 {
+    font-size: 2rem;
+    color: #ed1c24;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 10px rgba(237, 28, 36, 0.5);
+}
+
+/* Stile delle etichette */
+label {
+    font-size: 1rem;
+    color: #ddd;
+    text-align: left;
+    display: block;
+    margin-top: 15px;
+}
+
+/* Stile degli input */
+input[type="text"], input[type="email"], select {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    font-size: 1rem;
+    transition: background 0.3s ease, transform 0.2s ease;
+    margin-top: 5px;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, select:focus {
+    background: rgba(255, 255, 255, 0.2);
+    outline: none;
+    transform: scale(1.02);
+}
+
+/* Stile del pulsante */
+button {
+    background: linear-gradient(135deg, #ed1c24, #b31217);
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    margin-top: 20px;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #b31217, #ed1c24);
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* Stile del risultato */
+.result {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    text-align: left;
+}
+
+.result h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.result.error {
+    background: rgba(237, 28, 36, 0.2);
+    border: 1px solid rgba(237, 28, 36, 0.5);
+}
+
+.result.success {
+    background: rgba(34, 197, 94, 0.2);
+    border: 1px solid rgba(34, 197, 94, 0.5);
+}
+
+.result pre {
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    color: #ddd;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.back {
+    align-self: flex-start; /* Lo sposta a sinistra */
+    margin-bottom: 20px; /* Distanza dagli altri elementi */
+    position: relative;
+    background: linear-gradient(135deg, #ed1c24, #b31217); /* Gradiente rosso */
+    color: white; /* Testo bianco */
+    padding: 10px; /* Spaziatura interna */
+    border: none; /* Nessun bordo */
+    border-radius: 10px; /* Bordi arrotondati */
+    font-size: 5rem; /* Dimensione del testo */
+    cursor: pointer; /* Cambia il cursore in una mano */
+    transition: background 0.3s ease, transform 0.2s ease; /* Transizione fluida */
+    margin-top: 20px; /* Spazio sopra il pulsante */
+}
+
+.back:hover {
+    background: linear-gradient(135deg, #b31217, #ed1c24); /* Gradiente invertito */
+    transform: scale(1.05); /* Effetto di ingrandimento */
+}
+
+/* Animazione di caricamento */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
