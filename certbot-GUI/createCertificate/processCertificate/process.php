@@ -51,44 +51,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $timerName = "certbot-renew-$domain";
                 $serviceFilePath = "/etc/systemd/system/$timerName.service";
                 $timerFilePath = "/etc/systemd/system/$timerName.timer";
-
-                // Crea il file di servizio
+            
+                // Create the service file
                 $serviceFileContent = "[Unit]
-Description=Renew Certbot certificate for $domain
-
-[Service]
-Type=oneshot
-ExecStart=/usr/bin/certbot renew --force-renewal --cert-name $domain
-";
-
+            Description=Renew Certbot certificate for $domain
+            
+            [Service]
+            Type=oneshot
+            ExecStart=/usr/bin/certbot renew --force-renewal --cert-name $domain
+            ";
+            
                 if (file_put_contents($serviceFilePath, $serviceFileContent) === false) {
                     $output .= "\nErrore nella scrittura del file di servizio.";
                     $error = true;
                 }
-
-                // Crea il file di timer
+            
+                // Create the timer file
                 $timerFileContent = "[Unit]
-Description=Run Certbot renew every 45 days for $domain
+            Description=Run Certbot renew every 45 days for $domain
+            
+            [Timer]
+            [Timer]
+            OnUnitActiveSec=3888000
+            Persistent=true
 
-[Timer]
-OnCalendar=*-*-* *:*:0/3888000
-Persistent=true
-
-[Install]
-WantedBy=timers.target
-";
-
+            
+            [Install]
+            WantedBy=timers.target
+            ";
+            
                 if (file_put_contents($timerFilePath, $timerFileContent) === false) {
                     $output .= "\nErrore nella scrittura del file di timer.";
                     $error = true;
                 }
-
+            
                 if (!$error) {
-                    // Abilita e avvia il timer
+                    // Enable and start the timer
                     $enableOutput = shell_exec("sudo systemctl enable $timerName.timer 2>&1");
                     $startOutput = shell_exec("sudo systemctl start $timerName.timer 2>&1");
-
-                    // Controlla se ci sono errori durante l'abilitazione o l'avvio del timer
+            
+                    // Check for errors during enabling or starting the timer
                     if (strpos($enableOutput, "failed") !== false || strpos($startOutput, "failed") !== false) {
                         $output .= "\nErrore durante l'abilitazione o l'avvio del timer.";
                         $output .= "\nEnable Output: $enableOutput";
