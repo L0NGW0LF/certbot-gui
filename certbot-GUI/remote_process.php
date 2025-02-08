@@ -15,7 +15,7 @@ function validateDomain($domain) {
     return filter_var($domain, FILTER_VALIDATE_DOMAIN, FILTER_FLAG_HOSTNAME);
 }
 
-function runCertbotCommand($domain)
+function runCertbotCommand($domain, $email)
 {
     if (!validateDomain($domain)) {
         send_message("[ERROR] Invalid domain format");
@@ -31,7 +31,8 @@ function runCertbotCommand($domain)
     // Set a reasonable timeout
     set_time_limit(300); // 5 minutes timeout
 
-    $process = proc_open("sudo certbot certonly --agree-tos --manual --preferred-challenges dns -d " . escapeshellarg($domain), $descriptorspec, $pipes);
+    //shell_exec("sudo service apache2 restart");
+    $process = proc_open("sudo certbot certonly --email $email --agree-tos --manual --preferred-challenges dns -d " . escapeshellarg($domain), $descriptorspec, $pipes);
 
     if (!is_resource($process)) {
         send_message("[ERROR] Failed to start the process");
@@ -149,10 +150,11 @@ function runCertbotCommand($domain)
     return $return_value === 0;
 }
 
-if (isset($_GET['domain'])) {
+if (isset($_GET['domain']) && isset($_GET['email']) ) {
     $domain = trim($_GET['domain']);
+    $email = trim($_GET['email']);
     send_message("Domain received: $domain");
-    runCertbotCommand($domain);
+    runCertbotCommand($domain, $email);
 } else {
     send_message("No domain provided.");
 }

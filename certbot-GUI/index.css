@@ -14,7 +14,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    overflow: hidden;
+    overflow: auto;
 }
 
 /* Stile del contenitore principale */
@@ -24,10 +24,35 @@ body {
     border-radius: 20px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
     width: 100%;
-    max-width: 500px;
+    max-width: 700px;
     padding: 40px;
     text-align: center;
     animation: fadeIn 1s ease-in-out;
+    overflow-y: auto;
+}
+
+
+/* Stile del pulsante "back" */
+.back {
+    align-self: flex-start; /* Lo sposta a sinistra */
+    margin-bottom: 20px; /* Distanza dagli altri elementi */
+    position: relative;
+    left: -280px; /* Sposta l'elemento 20px più a sinistra */
+    top: -30px;
+    background: linear-gradient(135deg, #ed1c24, #b31217); /* Gradiente rosso */
+    color: white; /* Testo bianco */
+    padding: 10px; /* Spaziatura interna */
+    border: none; /* Nessun bordo */
+    border-radius: 10px; /* Bordi arrotondati */
+    font-size: 5rem; /* Dimensione del testo */
+    cursor: pointer; /* Cambia il cursore in una mano */
+    transition: background 0.3s ease, transform 0.2s ease; /* Transizione fluida */
+    margin-top: 20px; /* Spazio sopra il pulsante */
+}
+
+.back:hover {
+    background: linear-gradient(135deg, #b31217, #ed1c24); /* Gradiente invertito */
+    transform: scale(1.05); /* Effetto di ingrandimento */
 }
 
 /* Stile per un contenitore più grande */
@@ -49,6 +74,26 @@ h1 {
     color: #ed1c24; /* Nuovo colore rosso */
     margin-bottom: 20px;
     text-shadow: 2px 2px 10px rgba(237, 28, 36, 0.5); /* Ombra del testo adattata al nuovo colore */
+}
+
+h2 {
+    font-size:  1rem;
+    color: #ddd;
+}
+
+/* Stile dell'area di output */
+.output-name-value {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 3px;
+    height: 100px;
+    width: 100%;
+    color: #ddd;
+    font-family: 'Courier New', monospace;
+    font-size: 0.5rem;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Stile del paragrafo */
@@ -105,11 +150,20 @@ p {
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* Add these styles */
+#output {
+    display: none;
+}
+
+.show {
+    display: block !important;
+}
 
 /* Stile dei gruppi di input */
 .input-group {
     margin-bottom: 20px;
-    text-align: left;
+    align-items: center;
+
 }
 
 .input-group label {

@@ -16,7 +16,8 @@
         <p>Scegli un'opzione:</p>
         <div class="button-container">
             <!-- Pulsante per creare un nuovo certificato -->
-            <a href="createCertificate/create_certificate.php" class="btn">Crea un Nuovo Certificato</a>
+            <a href="createCertificate/create_certificate.php" class="btn">Crea Nuovo Certificato</a>
+            <a href="remote_certificate.php" class="btn">Crea Certificato da Remoto</a>
             <!-- Pulsante per visualizzare i certificati attivi -->
             <a href="viewCertificates/view_certificates.php" class="btn">Visualizza Certificati</a>
             <a href="showSites/show_sites.php" class="btn">Gestisci i Sites</a>

@@ -11,11 +11,11 @@
 
     <!-- Contenitore principale -->
     <div class="container">
-    <a href="../index.php">
-            <img class="back" src="https://img.icons8.com/?size=100&id=85498&format=png&color=FFFFFF"  
-            width="40" 
-            height="40">
-    </a>
+        <a href="../index.php">
+                <img class="back" src="https://img.icons8.com/?size=100&id=85498&format=png&color=FFFFFF"  
+                width="40" 
+                height="40">
+        </a>
 
         <!-- Titolo della pagina -->
         <h1>Crea Certificato </h1><br>
