@@ -90,6 +90,52 @@ p {
     transform: scale(0.98);
 }
 
+/* Stile dell'area di output */
+.output-box {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    height: 300px;
+    overflow-y: auto;
+    color: #ddd;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+
+/* Stile dei gruppi di input */
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group label {
+    font-size: 1rem;
+    color: #ddd;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    font-size: 1rem;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.input-group input:focus {
+    background: rgba(255, 255, 255, 0.2);
+    outline: none;
+    transform: scale(1.02);
+}
+
 /* Animazione di caricamento */
 @keyframes fadeIn {
     from {

@@ -31,7 +31,7 @@ function runCertbotCommand($domain)
     // Set a reasonable timeout
     set_time_limit(300); // 5 minutes timeout
 
-    $process = proc_open("sudo certbot certonly --manual --preferred-challenges dns -d " . escapeshellarg($domain), $descriptorspec, $pipes);
+    $process = proc_open("sudo certbot certonly --agree-tos --manual --preferred-challenges dns -d " . escapeshellarg($domain), $descriptorspec, $pipes);
 
     if (!is_resource($process)) {
         send_message("[ERROR] Failed to start the process");

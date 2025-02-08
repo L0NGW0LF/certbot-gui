@@ -5,72 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Certbot Command Runner</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 50px;
-        }
-        .container {
-            max-width: 600px;
-            margin: auto;
-        }
-        .input-group {
-            margin-bottom: 20px;
-        }
-        .input-group label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        .input-group input {
-            width: 100%;
-            padding: 10px;
-            box-sizing: border-box;
-        }
-        .input-group button {
-            padding: 10px 20px;
-            font-size: 16px;
-        }
-        #output {
-            margin-top: 20px;
-            white-space: pre-wrap;
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
-            padding: 10px;
-            height: 300px;
-            overflow-y: scroll;
-        }
-        .service-button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            margin-left: 10px;
-        }
-        .service-button:hover {
-            background-color: #45a049;
-        }
-        .action-button {
-            background-color: #008CBA;
-            color: white;
-            border: none;
-            margin-left: 10px;
-        }
-        .action-button:hover {
-            background-color: #007B9A;
-        }
-    </style>
+    <link rel="stylesheet" href="index.css"> <!-- Collegamento al file CSS -->
 </head>
 <body>
     <div class="container">
-        <h1>Run Certbot Command</h1>
+        <h1>Remote Certbot</h1>
+
+      <!-- Input per il dominio -->
         <div class="input-group">
             <label for="domain">Domain:</label>
-            <input type="text" id="domain" name="domain" required>
+            <input type="text" id="domain" name="domain" placeholder="es: example.com" required>
         </div>
+
+
         <div class="input-group">
-            <button id="runButton">Run Certbot</button>
-            <button id="stopButton">Stop</button>
-            <button id="pressEnter" class="action-button">Press Enter</button>
-            <button id="restartApache" class="service-button">Restart Apache</button>
+            <button id="runButton" class="btn">Run Certbot</button>
+            <button id="stopButton" class="btn">Stop</button>
+            <button id="pressEnter" class="action-button btn">Press Enter</button>
         </div>
         <div id="output"></div>
     </div>
@@ -136,21 +87,6 @@
                         outputDiv.scrollTop = outputDiv.scrollHeight;
                     });
             }
-        });
-
-        document.getElementById('restartApache').addEventListener('click', function() {
-            const outputDiv = document.getElementById('output');
-            outputDiv.innerHTML += '[INFO] Restarting Apache...\n';
-
-            fetch('restart_apache.php')
-                .then(response => response.text())
-                .then(data => {
-                    outputDiv.innerHTML += data + '\n';
-                    outputDiv.scrollTop = outputDiv.scrollHeight;
-                })
-                .catch(error => {
-                    outputDiv.innerHTML += '[ERROR] Failed to restart Apache: ' + error + '\n';
-                });
         });
     </script>
 </body>
