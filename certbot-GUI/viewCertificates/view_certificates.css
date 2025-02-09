@@ -123,6 +123,32 @@ a:hover {
     color: #b31217; /* Tonalità più scura di rosso */
 }
 
+
+.btn {
+    background: linear-gradient(135deg, #ed1c24, #c21a20); /* Gradiente rosso */
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    text-decoration: none;
+    text-align: center;
+}
+
+/* Effetto hover sui pulsanti */
+.btn:hover {
+    background: linear-gradient(135deg, #c21a20, #ed1c24); /* Gradiente invertito */
+    transform: scale(1.05);
+}
+
+/* Effetto click sui pulsanti */
+.btn:active {
+    transform: scale(0.98);
+}
+
+
 /* Animazione di caricamento */
 @keyframes fadeIn {
     from {
