@@ -1,9 +1,19 @@
 <?php
-header('Content-Type: application/json');
+// Path to the file you want to open
+$file = '/path/to/your/file.pdf';
 
-try {
-    $output = shell_exec('xdg-open ~ 2>&1');
-    echo json_encode(['success' => true, 'message' => 'Folder opened successfully']);
-} catch (Exception $e) {
-    echo json_encode(['success' => false, 'message' => $e->getMessage()]);
+// Escape the file path to ensure it is safe to use in a shell command
+$escapedFile = escapeshellarg($file);
+
+// Command to open the file using xdg-open
+$command = 'xdg-open ' . $escapedFile;
+
+// Execute the command and capture the output and return status
+exec($command . ' > /dev/null 2>&1 &', $output, $return_var);
+
+if ($return_var === 0) {
+    echo "The file has been opened successfully.";
+} else {
+    echo "Failed to open the file.";
 }
+?>
