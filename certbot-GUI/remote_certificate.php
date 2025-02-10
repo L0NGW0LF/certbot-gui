@@ -27,9 +27,9 @@
 
 
         <div class="input-group">
-            <button id="runButton" class="btn">Run Certbot</button>
-            <button id="stopButton" class="btn">Stop Certbot</button>
-            <button id="toggleOutput" class="btn">Show Output</button><br><br>
+            <button id="runButton" class="btn">Esegui Certbot</button>
+            <button id="stopButton" class="btn">Ferma Certbot</button>
+            <button id="toggleOutput" class="btn">Mostra Output</button><br><br>
         </div>
               <!-- Checkbox del Test certificato -->
         <div class="test">

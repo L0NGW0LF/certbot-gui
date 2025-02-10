@@ -60,8 +60,8 @@ echo "www-data ALL=(ALL) NOPASSWD: /usr/bin/certbot" | sudo tee -a /etc/sudoers
 echo "www-data ALL=(ALL) NOPASSWD: /bin/cp /etc/letsencrypt/live/*" | sudo tee -a /etc/sudoers
 
 
-# Installa Python 3, Certbot e xdg-open
-sudo apt install -y python3 python3-venv libaugeas0 xdg-open
+# Installa Python 3, Certbot
+sudo apt install -y python3 python3-venv libaugeas0 
 
 # Crea un ambiente virtuale per Certbot
 sudo python3 -m venv /opt/certbot/
