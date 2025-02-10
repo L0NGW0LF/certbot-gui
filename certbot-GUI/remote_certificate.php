@@ -31,13 +31,19 @@
             <button id="stopButton" class="btn">Stop Certbot</button>
             <button id="toggleOutput" class="btn">Show Output</button><br><br>
         </div>
+              <!-- Checkbox del Test certificato -->
+        <div class="test">
+                <input type="checkbox" id="testCheckbox" name="test">
+                <label for="testCheckbox"></label>
+                <span>Test richiesta certificato</span>
+            </div>
+        <div id="status-messages"></div>
         <div id="output" class="input-group"></div><br>
         <div class="output-name-value">
             <h2 for="domain" id="txtName"></h2>
             <h2 for="domain" id="txtValue"></h2>
         </div><br>
-
-        <button id="pressEnter" class="action-button btn">Press Enter</button>
+        <button id="pressEnter" class="action-button btn">Verifica DNS TXT</button>
 
     </div>
 
@@ -58,8 +64,10 @@
             outputDiv.innerHTML = 'Running...\n';
 
             // Modifica l'URL per includere sia il dominio che l'email
+            const testCheckbox = document.getElementById('testCheckbox');
             eventSource = new EventSource('remote_process.php?domain=' + encodeURIComponent(domain) +
-                '&email=' + encodeURIComponent(email));
+                '&email=' + encodeURIComponent(email) +
+                '&test=' + testCheckbox.checked);
             eventSource.onmessage = function (event) {
                 const outputDiv = document.getElementById('output');
                 outputDiv.innerHTML += event.data + '\n';
@@ -73,6 +81,25 @@
                 if (event.data.startsWith('Value:')) {
                     const txtValue = document.getElementById('txtValue');
                     txtValue.textContent = event.data;
+                }
+
+                // Check for specific messages in the output
+                let messageState = '';
+                if (event.data.includes('Certbot failed to authenticate') || event.data.includes('[ERROR] Some challenges have failed')) {
+                    messageState = '<div class="error-message">La verifica del DNS non è andata a buon fine</div>';
+                } else if (event.data.includes('Successfully')) {
+                    messageState = '<div class="success-message">Certificato generato con successo</div>';
+                } else if (event.data.includes('existing certificate')) {
+                    messageState = '<div class="warning-message">Certificato con questo nome o Dominio già esistente</div>';
+                }
+
+                // Se abbiamo un messaggio di stato, rimuoviamo i vecchi messaggi e mostriamo quello nuovo
+                if (messageState) {
+                    const statusDiv = document.getElementById('status-messages');
+                    const existingMessages = document.querySelectorAll('.error-message, .success-message, .warning-message');
+                    existingMessages.forEach(msg => msg.remove());
+                    console.log('Showing message:', messageState);
+                    statusDiv.innerHTML = messageState;
                 }
 
                 // Show the Press Enter button when DNS record needs to be configured

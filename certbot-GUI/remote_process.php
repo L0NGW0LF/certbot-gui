@@ -15,8 +15,11 @@ function validateDomain($domain) {
     return filter_var($domain, FILTER_VALIDATE_DOMAIN, FILTER_FLAG_HOSTNAME);
 }
 
-function runCertbotCommand($domain, $email)
+function runCertbotCommand($domain, $email, $test)
 {
+    // Kill any existing certbot process
+    exec("pkill -f certbot");
+    
     if (!validateDomain($domain)) {
         send_message("[ERROR] Invalid domain format");
         return false;
@@ -32,7 +35,7 @@ function runCertbotCommand($domain, $email)
     set_time_limit(300); // 5 minutes timeout
 
     //shell_exec("sudo service apache2 restart");
-    $process = proc_open("sudo certbot certonly --email $email --agree-tos --manual --preferred-challenges dns -d " . escapeshellarg($domain), $descriptorspec, $pipes);
+    $process = proc_open("sudo certbot certonly $test --email $email --agree-tos --manual --preferred-challenges dns -d " . escapeshellarg($domain), $descriptorspec, $pipes);
 
     if (!is_resource($process)) {
         send_message("[ERROR] Failed to start the process");
@@ -150,11 +153,14 @@ function runCertbotCommand($domain, $email)
     return $return_value === 0;
 }
 
-if (isset($_GET['domain']) && isset($_GET['email']) ) {
+// At the top of the file where you handle GET parameters
+if (isset($_GET['domain']) && isset($_GET['email'])) {
     $domain = trim($_GET['domain']);
     $email = trim($_GET['email']);
+    $test = isset($_GET['test']) && $_GET['test'] === 'true' ? '--dry-run' : '';
+    
     send_message("Domain received: $domain");
-    runCertbotCommand($domain, $email);
+    runCertbotCommand($domain, $email, $test);
 } else {
     send_message("No domain provided.");
 }
@@ -178,4 +184,4 @@ document.getElementById('pressEnter').addEventListener('click', function() {
             });
     }
 });
-</script>
+

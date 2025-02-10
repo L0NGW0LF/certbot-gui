@@ -190,6 +190,60 @@ p {
     transform: scale(1.02);
 }
 
+.test {
+    display: flex; /* Allinea gli elementi in linea */
+    align-items: center; /* Allinea verticalmente */
+    gap: 10px; /* Spazio tra il checkbox e l'etichetta */
+    margin-top: 20px; /* Spazio sopra il checkbox */
+}
+
+/* Nascondi il checkbox reale */
+.test input[type="checkbox"] {
+    display: none; /* Nasconde il checkbox predefinito */
+}
+
+/* Stile della label che funge da toggle */
+.test label {
+    position: relative;
+    display: inline-block;
+    width: 50px; /* Larghezza del toggle */
+    height: 25px; /* Altezza del toggle */
+    background: rgba(255, 255, 255, 0.1); /* Sfondo semi-trasparente */
+    border-radius: 15px; /* Bordi arrotondati */
+    cursor: pointer; /* Cambia il cursore in una mano */
+    transition: background 0.3s ease; /* Transizione fluida */
+}
+
+/* Stile del cerchio interno (indicatore) */
+.test label::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 19px; /* Dimensione del cerchio */
+    height: 19px; /* Dimensione del cerchio */
+    background: white; /* Colore del cerchio */
+    border-radius: 50%; /* Cerchio perfetto */
+    transition: transform 0.3s ease; /* Transizione fluida */
+}
+
+/* Quando il checkbox è selezionato */
+.test input[type="checkbox"]:checked + label {
+    background: #ed1c24; /* Cambia il colore dello sfondo quando attivo */
+}
+
+/* Anima il cerchio interno quando il checkbox è selezionato */
+.test input[type="checkbox"]:checked + label::before {
+    transform: translateX(24px); /* Muove il cerchio a destra */
+}
+
+/* Stile del testo accanto al toggle */
+.test span {
+    font-size: 1rem; /* Dimensione del testo */
+    color: #ddd; /* Colore grigio chiaro */
+    font-weight: bold; /* Testo in grassetto */
+}
+
 /* Animazione di caricamento */
 @keyframes fadeIn {
     from {
@@ -200,4 +254,34 @@ p {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+#status-messages {
+    margin: 10px 0;
+    padding: 10px;
+    min-height: 30px;
+}
+
+.error-message {
+    background-color: #ffebee;
+    color: #c62828;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ef9a9a;
+}
+
+.success-message {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #a5d6a7;
+}
+
+.warning-message {
+    background-color: #fff3e0;
+    color: #ef6c00;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ffcc80;
 }
