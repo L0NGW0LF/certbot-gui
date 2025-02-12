@@ -15,10 +15,17 @@ function validateDomain($domain) {
     return filter_var($domain, FILTER_VALIDATE_DOMAIN, FILTER_FLAG_HOSTNAME);
 }
 
+function killCertbot() {
+    exec("pkill -f certbot", $output, $return_var);
+    if ($return_var === 0) {
+        send_message("[INFO] Certbot process killed successfully");
+    } else {
+        send_message("[ERROR] No Certbot process found or failed to kill");
+    }
+}
+
 function runCertbotCommand($domain, $email, $test)
 {
-    // Kill any existing certbot process
-    exec("pkill -f certbot");
     
     if (!validateDomain($domain)) {
         send_message("[ERROR] Invalid domain format");
@@ -163,6 +170,11 @@ if (isset($_GET['domain']) && isset($_GET['email'])) {
     runCertbotCommand($domain, $email, $test);
 } else {
     send_message("No domain provided.");
+}
+
+if (isset($_GET['action']) && $_GET['action'] === 'kill') {
+    killCertbot();
+    exit;
 }
 
 ?>

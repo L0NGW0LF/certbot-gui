@@ -29,7 +29,7 @@ if [[ "$install_apache" == "s" ]]; then
     sudo apt update
     sudo apt install -y apache2
     sudo apt install -y php libapache2-mod-php
-    sudo apt install -y php-mysql php-xml php-mbstring php-cli php-cgi php-fpm
+    sudo apt install -y php-mysql php-xml php-mbstring php-cli php-cgi php-fpm php-zip
 
 
     # Cambia il proprietario delle directory di configurazione di Apache

@@ -91,6 +91,8 @@
                     messageState = '<div class="success-message">Certificato generato con successo</div>';
                 } else if (event.data.includes('existing certificate')) {
                     messageState = '<div class="warning-message">Certificato con questo nome o Dominio già esistente</div>';
+                } else if (event.data.includes('dry run was successful')) {
+                    messageState = '<div class="success-message">Test di generazione certificato superato</div>';
                 }
 
                 // Se abbiamo un messaggio di stato, rimuoviamo i vecchi messaggi e mostriamo quello nuovo
@@ -116,11 +118,21 @@
             };
         });
 
-        document.getElementById('stopButton').addEventListener('click', function () {
+        document.getElementById('stopButton').addEventListener('click', function() {
             if (eventSource) {
-                eventSource.close();
-                const outputDiv = document.getElementById('output');
-                outputDiv.innerHTML += '\n[INFO] Command execution stopped by user.\n';
+                // First kill the certbot process
+                fetch('remote_process.php?action=kill')
+                    .then(() => {
+                        // Then close the EventSource connection
+                        eventSource.close();
+                        const outputDiv = document.getElementById('output');
+                        outputDiv.innerHTML += '\n[INFO] Command execution stopped by user.\n';
+                    })
+                    .catch(error => {
+                        console.error('Error stopping certbot:', error);
+                        const outputDiv = document.getElementById('output');
+                        outputDiv.innerHTML += '\n[ERROR] Failed to stop certbot: ' + error + '\n';
+                    });
             }
         });
 
